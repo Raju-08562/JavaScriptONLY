@@ -18,11 +18,13 @@ x(function y(){
 ```
 
 Output:
->timer
 >x
->y
+>undefined
+>Timer
+
 
 **Explanation**
+Here y is never logged out...ur passing y as arg. in x but never using it
 
 Settimeout is an async function; it takes a function and executes after x miliseconds.
 
@@ -30,7 +32,7 @@ The JS thread continues to execute other code and the call stack is filled and e
 
 Once the call stack is empty, it checks if the async queue is filled; then it executes those functions in the queue.
 
-Thus output is x, y and then timer.
+Thus output is x, undefined and then timer.
 
 JS is single threaded synchronous language.
 
@@ -49,4 +51,13 @@ attachEventListeners();
 
 Event Listeners are memory-heavy. Thus we must use removeEventListeners.
 
-
+### Let us Understand callbacks in a more cleaner way with an example
+```
+function add(a, b, callback){
+    console.log(`The Sum of ${a} and ${b} is ${a+b}`);
+    callback();
+}
+add(2, 3, function disp(){
+    console.log("Print the line after addition"):
+});    
+```
